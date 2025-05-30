@@ -16,12 +16,16 @@ public static class ConfigureServices
 {
 	public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
 	{
+		var origins = Environment.GetEnvironmentVariable("CORS_ORIGINS")?
+		.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) 
+		?? Array.Empty<string>();
+
 		services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
 		{
 			builder
 				.AllowAnyMethod()
 				.AllowAnyHeader()
-				.WithOrigins("http://localhost:44444");
+				.WithOrigins(origins);
 		}));
 
 		services.AddScoped<AuditableEntitySaveChangesInterceptor>();

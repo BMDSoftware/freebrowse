@@ -10,6 +10,14 @@ export default ({ mode }: { mode: any }): any => {
 	// https://stackoverflow.com/a/66389044
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
+	// Parse allowed hosts (comma-separated string)
+	const allowedHosts = (process.env.VITE_ALLOWED_HOSTS || '')
+		.split(',')
+		.map((h) => h.trim())
+		.filter(Boolean); // remove empty strings
+
+	console.log('Allowed Hosts:', allowedHosts);
+
 	return defineConfig({
 		resolve: {
 			alias: {
@@ -18,8 +26,10 @@ export default ({ mode }: { mode: any }): any => {
 		},
 		plugins: [react()],
 		server: {
+			host: '0.0.0.0',
 			port: parseInt(process.env.VITE_PORT),
 			https: getHttpsConfig(),
+			allowedHosts: allowedHosts,
 		},
 	});
 };

@@ -127,24 +127,6 @@ export const TopBar = observer(
 
 		return (
 			<div className="flex h-20 items-baseline bg-font px-4 [&>*:nth-child(6)]:ml-auto">
-				<ToolButtonSelect
-					label="FreeBrowse"
-					icon={(className) => <BrainIcon className={className} />}
-					entries={[
-						{
-							label: 'Back to project space',
-							icon: (className) => <ArrowUturnLeftIcon className={className} />,
-							onClick: () => navigate('/'),
-						},
-						{
-							label: 'Create new project',
-							icon: (className) => <DocumentPlusIcon className={className} />,
-							onClick: () => {
-								void onGetStartedClick();
-							},
-						},
-					]}
-				></ToolButtonSelect>
 				<ToolButtonRadio
 					entries={[
 						{
@@ -229,24 +211,6 @@ export const TopBar = observer(
 						},
 					}}
 					icon={(className) => <BookmarkSquareIcon className={className} />}
-				/>
-				<ToolButton
-					label="Download"
-					buttonProps={{
-						onClick: () => {
-							void onDownloadClick();
-						},
-					}}
-					icon={(className) => <ArrowDownTrayIcon className={className} />}
-				/>
-				<ToolButton
-					label="Share"
-					icon={(className) => <ShareIcon className={className} />}
-					buttonProps={{
-						onClick: () => {
-							void onShareClick();
-						},
-					}}
 				/>
 				<ToolButton
 					label="Settings"

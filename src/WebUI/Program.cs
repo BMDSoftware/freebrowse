@@ -4,6 +4,14 @@ using WebUI.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Set to 200 MB the maximum upload size
+// Otherwise, we get lower upload sizes
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 200 * 1024 * 1024; 
+});
+
 // Add services to the container.
 builder.Services
     .AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)

@@ -22,7 +22,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "chrome",
-            "url": "https://localhost:44444",
+            "url": "http://127.0.0.1:3001",
             "webRoot": "${workspaceFolder}",
             "presentation": {
                 "hidden": true,
